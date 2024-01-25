@@ -1,0 +1,17 @@
+{
+  "status": "published",
+  "topicId": 5
+}
+
+ [
+  {
+    "question": "Как осуществляется доставка?",
+    "answer": "быстро!",
+    "tags": [
+      "popular",
+      "new"
+    ],
+    "likes": 3,
+    "status": "published"
+  }
+]
