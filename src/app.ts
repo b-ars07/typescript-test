@@ -1,5 +1,6 @@
-// // Union Types
+//////////////////////// Union Types ///////////////////////////////
 //
+
 // function logId(id: string | number | boolean) {
 //     console.log(id)
 // }
@@ -19,8 +20,11 @@
 //
 // fetchWithAuth('dfd', 'post')
 //
-// // Type Aliases
-//
+
+
+//////////////////////// Type Aliases /////////////////////////////////
+
+
 // type httpMethod = 'get' | 'post'
 //
 // function fetchAuth(url: string, method: httpMethod) {
@@ -41,8 +45,8 @@
 //     skills: ['1', '2']
 // }
 //
-// // intersection
-//
+//////////////////////// Intersection ///////////////////////////////
+
 // type User1 = {
 //     name: string,
 //     age: number,
@@ -62,7 +66,7 @@
 //     id: 404
 // }
 
-// Interfaces
+//////////////////////// Interfaces ///////////////////////////////
 
 // interface User {
 //     name: string,
@@ -93,17 +97,19 @@
 // type ud = Record<number, User> // Появился недавно, синтаксический сахар для Словарей
 
 
-// Optional
+//////////////////////// Optional ///////////////////////////////
 
+/*
 interface User {
     login: string,
     password?: string //опционально
-}
+}*/
 
 
-// Unknown
+//////////////////////// Unknown ///////////////////////////////
 
-/*async function getData() {
+/*
+async function getData() {
     try {
         await fetch('')
     }
@@ -126,7 +132,8 @@ async function getDataForce() {
     }
 }*/
 
-// Never
+//////////////////////// Never ///////////////////////////////
+//
 /*
 
 function generateError(message: string): never { // never - никогда не возвращаем значение из функции
@@ -150,7 +157,8 @@ function processAction(action: paymentAction) {
 */
 
 
-// Приведение типов
+//////////////////////// Приведение типов ///////////////////////////////
+
 /*
 interface User {
     name: string,
@@ -190,9 +198,9 @@ function userToAdmin(user: User): Admin {
     }
 }*/
 
-// Type Guard
+//////////////////////// Type Guard ///////////////////////////////
 
-interface User {
+/*interface User {
     name: string,
     email: string,
     login: string
@@ -215,10 +223,10 @@ function logId(id: string | number) {
     } else {
         console.log(id)
     }
-}
+}*/
 
-// Type Guard функция
-
+//////////////////////// Type Guard. Функция ///////////////////////////////
+/*
 function  isString(x: string | number): x is string {
     return typeof x === 'string'
 }
@@ -237,5 +245,56 @@ function setRole(user: User | Admin) {
         throw new Error('User is not Admin')
     }
 }
+*/
+
+//////////////////////// Asserts ///////////////////////////////
+/*
+
+interface User {
+    name: string
+}
+
+const a = {}
+
+assertUser(a)
+a.name = 'Test'
+
+function assertUser(obj: unknown): asserts obj is User {
+    if (typeof obj === 'object' && !!obj && 'name' in obj) {  // !!obj тоже самое, что  obj !== null
+        return
+    }
+
+    throw new Error('No user')
+}
+*/
+
+//////////////////////// Классы ///////////////////////////////
+/*
+class User {
+    constructor();
+    constructor(name: string);
+    constructor(age: number);
+    constructor(name: string, age: number);
+    constructor(nameOrAge?: string | number, age?: number) {
+        if (typeof nameOrAge === 'string') {
+            this.name = nameOrAge
+        } else if (typeof nameOrAge === 'number') {
+            this.age = nameOrAge
+        }
+        if (typeof age === 'number') {
+            this.age = age
+        }
+    }
+
+    name: string
+    age: number
+}
+
+const user = new User('Test')
+const user2 = new User()
+const user3 = new User(33)
+const user4 = new User('test', 33)
+*/
 
 
+///////////////////// Классы. Методы /////////////////////
