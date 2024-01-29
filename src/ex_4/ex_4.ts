@@ -17,9 +17,9 @@ interface IDataFailed {
 }
 interface IResponseSuccess {
     status: PaymentStatus.Success;
-    data: IDataSuccess;
+    dataResponse: IDataSuccess;
 }
 interface IResponseFailed {
     status: PaymentStatus.Failed;
-    data: IDataFailed;
+    dataResponse: IDataFailed;
 }

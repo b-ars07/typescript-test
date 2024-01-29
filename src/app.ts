@@ -298,3 +298,76 @@ const user4 = new User('test', 33)
 
 
 ///////////////////// Классы. Методы /////////////////////
+
+/*
+enum PaymentStatus {
+    Holded,
+    Processed,
+    Reversed
+}
+
+class Payment {
+    id: number
+    status: PaymentStatus = PaymentStatus.Holded
+    createdAt: Date = new Date()
+    updatedAt: Date
+
+    constructor(id: number) {
+        this.id = id
+    }
+
+    getTimePayment():number {
+        return new Date().getTime() - this.createdAt.getTime()
+    }
+
+    unholdPayment(): void {
+        if (this.status === PaymentStatus.Processed) {
+            throw new Error('Error Message')
+        }
+
+        this.status = PaymentStatus.Reversed
+        this.updatedAt = new Date()
+    }
+}
+
+const payment = new Payment(1)
+payment.unholdPayment()
+console.log(payment)
+const time = payment.getTimePayment()
+console.log(time)
+*/
+
+///////////////////// Классы. Перегрузка методов /////////////////////
+
+
+/*
+class User {
+    skills: string[]
+
+    addSkill(skill: string)
+    addSkill(skill: string[])
+    addSkill(skillOrSkills: string | string[]): void {
+        if (typeof skillOrSkills === 'string') {
+            this.skills.push(skillOrSkills)
+        } else {
+            this.skills.push(...skillOrSkills)
+        }
+    }
+}
+*/
+
+
+///////////////////// Классы. Getter и Setter /////////////////////
+
+class User {
+    _login: string
+    password: string
+
+    set login(l: string) {
+        this._login = `user-${l}`
+    }
+}
+
+const user = new User()
+user.login = 'myLogin'
+console.log(user)
