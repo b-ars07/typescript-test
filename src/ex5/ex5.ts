@@ -20,15 +20,15 @@ Product: id, название и цена
 Delivery: может быть как до дома (дата и адрес) или до пункта выдачи (дата = Сегодня и Id магазина)*/
 
 class Product {
-    constructor(id: number,
-                name: string,
-                price: number) {
+    constructor(public id: number,
+                public name: string,
+                public price: number) {
     }
 
 }
 
 class Delivery {
-    constructor(date: Date) {
+    constructor(public date: Date) {
     }
 }
 class HomeDelivery extends Delivery {
@@ -41,7 +41,7 @@ class HomeDelivery extends Delivery {
 }
 
 class ShopDelivery extends Delivery {
-    constructor(shopId: number) {
+    constructor(public shopId: number) {
         super(new Date());
 
     }
