@@ -359,6 +359,7 @@ class User {
 
 ///////////////////// Классы. Getter и Setter /////////////////////
 
+/*
 class User {
     _login: string
     password: string
@@ -371,3 +372,108 @@ class User {
 const user = new User()
 user.login = 'myLogin'
 console.log(user)
+*/
+
+///////////////////// Классы. Implements /////////////////////
+/*
+interface ILogger {
+    log(...args): void
+    error(...args): void
+}
+
+class Logger implements ILogger {
+    error(...args: any[]): void {
+        console.log(...args)
+    }
+
+    log(...args: any): void {
+        console.log(...args)
+    }
+
+}
+
+
+interface IPayable {
+    pay(paymentId: number) : void
+    price?: number
+}
+
+class User implements IPayable {
+    pay(paymentId: number): void {
+        /////
+    }
+    price?: number
+}*/
+
+///////////////////// Классы. Extends /////////////////////
+
+{
+    /*type PaymentStatus = 'new' | 'paid'
+
+    class Payment {
+        status: PaymentStatus = 'new'
+        id: number
+
+        constructor(id: number) {
+            this.id = id
+        }
+
+        pay(): void {
+            this.status = 'paid'
+        }
+
+    }
+
+
+    class PersistedPayment extends Payment {
+        constructor() {
+            const id = Math.random()
+            super(id);
+
+        }
+        databaseId: number
+        paymentAt: Date
+
+        save() {
+            ///
+        }
+
+        override pay(date?: Date) {
+            if (date) {
+                this.paymentAt = date
+            }
+        }
+
+    }*/
+}
+
+
+///////////////////// Классы. Видимость свойств /////////////////////
+
+class Vehicle {
+    make: string
+    private damages: string[]
+    private _model: string
+    protected run: number
+
+    set model(m: string) {
+        this._model = m
+    }
+
+    get model() {
+        return this._model
+    }
+
+    addDamages(damage: string) {
+        this.damages.push(damage)
+    }
+}
+
+class EuroTrack extends Vehicle {
+    setRun(km: number) {
+        this.run = km
+    }
+}
+
+
+
