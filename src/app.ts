@@ -449,6 +449,7 @@ class User implements IPayable {
 
 
 ///////////////////// Классы. Видимость свойств /////////////////////
+/*
 
 class Vehicle {
     make: string
@@ -474,6 +475,78 @@ class EuroTrack extends Vehicle {
         this.run = km
     }
 }
+*/
 
+///////////////////// Классы. this /////////////////////
 
+/*class Payment {
+    private date: Date = new Date()
 
+    getDate(this: Payment) {
+        return this.date
+    }
+
+    getDatArrow = () => {
+        return this.date
+    }
+}
+
+const p = new Payment()
+const user = {
+    id: 1,
+    paymentDate: p.getDate.bind(p)
+}
+
+console.log(user.paymentDate())*/
+
+///////////////////// Классы. Типизация this /////////////////////
+/*
+class UserBuilder {
+    name: string
+
+    setName(name: string): this {
+        this.name = name
+        return this
+    }
+
+    isAdmin(): this is AdminBuilder {
+        return this instanceof AdminBuilder
+    }
+}
+
+class AdminBuilder extends UserBuilder{
+    roles: string[]
+}
+
+const res = new UserBuilder().setName('Test')
+const res2 = new AdminBuilder().setName('admin')
+
+let user: UserBuilder | AdminBuilder = new UserBuilder()
+
+if (user.isAdmin()) {
+    console.log(user)
+} else {
+    console.log(user)
+}*/
+
+///////////////////// Классы. Абстрактные классы /////////////////////
+
+abstract class Controller {
+    abstract handle(req: any): void
+
+    handleWithLogs(req: any) {
+        console.log('start')
+        this.handle(req)
+        console.log('end')
+    }
+}
+
+class UserController extends Controller {
+    override handle(req: any) {
+        console.log(req)
+    }
+}
+
+// new Controller() - error
+const c = new UserController()
+c.handleWithLogs('Request')
