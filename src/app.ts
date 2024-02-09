@@ -530,6 +530,7 @@ if (user.isAdmin()) {
 }*/
 
 ///////////////////// Классы. Абстрактные классы /////////////////////
+/*
 
 abstract class Controller {
     abstract handle(req: any): void
@@ -550,3 +551,29 @@ class UserController extends Controller {
 // new Controller() - error
 const c = new UserController()
 c.handleWithLogs('Request')
+*/
+
+///////////////////// Generics. Встроенные generic /////////////////////
+
+const num: Array<number> = [1, 2, 3]
+
+const check: Record<string, boolean> = {
+    drive: true,
+    kpp: false
+}
+
+function logMiddleware<T>(data: T): T {
+    console.log(data)
+
+    return data
+}
+
+const log1 = logMiddleware<number>(10)
+const log2 = logMiddleware<boolean>(true)
+const log3 = logMiddleware<string>('inostranka')
+
+function getSplitedHalf<T>(data: Array<T>): Array<T> {
+    const l = data.length / 2
+
+    return data.slice(0, l)
+}
