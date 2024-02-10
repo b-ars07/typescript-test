@@ -554,7 +554,7 @@ c.handleWithLogs('Request')
 */
 
 ///////////////////// Generics. Встроенные generic /////////////////////
-
+/*
 const num: Array<number> = [1, 2, 3]
 
 const check: Record<string, boolean> = {
@@ -576,4 +576,20 @@ function getSplitedHalf<T>(data: Array<T>): Array<T> {
     const l = data.length / 2
 
     return data.slice(0, l)
+}*/
+
+///////////////////// Generics. ограничения generic /////////////////////
+
+class Vehicle {
+    run: number
+}
+
+function kmToMiles<T extends Vehicle>(vehicle: T): T {
+    vehicle.run = vehicle.run / 0.62
+
+    return vehicle
+}
+
+class LCV extends Vehicle {
+    capacity: number
 }
