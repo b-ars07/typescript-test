@@ -627,7 +627,7 @@ class HTTPResp extends Resp<string, number> {
 */
 
 ///////////////////// Generics. Миксины  /////////////////////
-
+/*
 type Constructor = new (...args: any[]) => {}
 type GConstructor<T = {}> = new (...args: any[]) => T
 
@@ -663,4 +663,29 @@ function ExtendedList<TBase extends ListType & AccordionType>(Base: TBase) {
 
 const list = ExtendedList(AccordionList)
 const res = new list(['first', 'second'])
-console.log(res.first())
+console.log(res.first())*/
+
+
+///////////////////// Keyof  /////////////////////
+
+interface IUser {
+    name: string
+    age: number,
+    dog: string
+}
+
+type KeysOfUser = keyof IUser
+
+const key: KeysOfUser = 'age'
+
+function getValue<T>(obj: T, key: keyof T): T[keyof T] {
+    return obj[key]
+}
+
+const user: IUser = {
+    name: 'Валера',
+    age: 20,
+    dog: 'Kunica'
+}
+
+console.log(getValue(user, 'dog'))
