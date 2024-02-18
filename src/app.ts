@@ -668,6 +668,7 @@ console.log(res.first())*/
 
 ///////////////////// Keyof  /////////////////////
 
+/*
 interface IUser {
     name: string
     age: number,
@@ -689,3 +690,30 @@ const user: IUser = {
 }
 
 console.log(getValue(user, 'dog'))
+*/
+
+
+/////////////////////  Indexed Access Types  /////////////////////
+
+interface Role {
+    name: string
+}
+
+interface User {
+    name: string
+    roles: Role[]
+}
+
+const user: User = {
+    name: 'Test',
+    roles: []
+}
+
+const nameUser = user['name']
+
+type rolesType = User['roles']
+
+type roleType = User['roles'][number]
+
+const roles = ['admin', 'user', 'super-user'] as const
+type roleTypes = typeof roles[number]
