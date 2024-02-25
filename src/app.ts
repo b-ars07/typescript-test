@@ -694,7 +694,7 @@ console.log(getValue(user, 'dog'))
 
 
 /////////////////////  Indexed Access Types  /////////////////////
-
+/*
 interface Role {
     name: string
 }
@@ -716,4 +716,79 @@ type rolesType = User['roles']
 type roleType = User['roles'][number]
 
 const roles = ['admin', 'user', 'super-user'] as const
-type roleTypes = typeof roles[number]
+type roleTypes = typeof roles[number]*/
+
+/////////////////////  Conditional Types  /////////////////////
+/*
+
+interface HTTPResponse<T extends 'success' | 'failed'> {
+  code: number,
+  data: T extends 'success' ? string : Error
+}
+const suc: HTTPResponse<'success'> = {
+    code: 200,
+    data: 'done'
+}
+
+const err: HTTPResponse<'failed'> = {
+    code: 400,
+    data: new Error()
+}
+
+class User {
+    id: number
+    name: string
+}
+
+class UserPersistend extends User {
+    dbId: string
+}
+
+type UserOrUserPersistend<T extends string | number> = T extends number ? User : UserPersistend
+
+function getUser<T extends string | number>(id: T): UserOrUserPersistend<T> {
+    if (typeof id === 'number') {
+        return new User() as UserOrUserPersistend<T>
+    } else {
+        return new UserPersistend()
+    }
+}
+
+const res = getUser(1)
+const res2 = getUser('str')
+*/
+
+/////////////////////  Infer  /////////////////////
+/*
+function runTransaction(transaction: {fromTo: [string, string]}) {
+    console.log(transaction)
+}
+
+type GetFirstArg<T> = T extends (first: infer First, ...args: any[]) => any ? First : never
+
+const transaction: GetFirstArg<typeof runTransaction> = {
+    fromTo: ['1', '2']
+}*/
+
+
+/////////////////////  Mapped Types  /////////////////////
+
+type Modifier = 'read' | 'update' | 'create'
+
+type UserRoles = {
+    customers?: Modifier,
+    projects?: Modifier,
+    adminPanel?: Modifier
+}
+
+type UserAccess = {
+    customers?: boolean,
+    projects?: boolean,
+    adminPanel?: boolean
+}
+
+type ModifiredToAccess<Type> = {
+    +readonly [Property in keyof Type as `canAccess${string & Property}`]-?: boolean
+}
+
+type UserAccess2 = ModifiredToAccess<UserRoles>
