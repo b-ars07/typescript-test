@@ -773,6 +773,7 @@ const transaction: GetFirstArg<typeof runTransaction> = {
 
 /////////////////////  Mapped Types  /////////////////////
 
+/*
 type Modifier = 'read' | 'update' | 'create'
 
 type UserRoles = {
@@ -792,3 +793,21 @@ type ModifiedToAccess<Type> = {
 }
 
 type UserAccess2 = ModifiedToAccess<UserRoles>
+*/
+
+/////////////////////   Template Literal Types  /////////////////////
+
+type ReadOrWrite = 'read' | 'write'
+type Bulk = 'bulk' | ''
+
+type Access = `can${Capitalize<ReadOrWrite>}${Capitalize<Bulk>}`
+
+type ErrorOnSuccess = 'success' | 'error'
+
+type ResponseT = {
+    result: `http${Capitalize<ErrorOnSuccess>}`
+}
+
+const a2: ResponseT = {
+    result: 'httpSuccess'
+}
