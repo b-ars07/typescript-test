@@ -796,7 +796,7 @@ type UserAccess2 = ModifiedToAccess<UserRoles>
 */
 
 /////////////////////   Template Literal Types  /////////////////////
-
+/*
 type ReadOrWrite = 'read' | 'write'
 type Bulk = 'bulk' | ''
 
@@ -810,4 +810,17 @@ type ResponseT = {
 
 const a2: ResponseT = {
     result: 'httpSuccess'
+}*/
+
+/////////////////////   Partial, Required, Readonly /////////////////////
+
+interface User {
+    name: string
+    age?: number
+    email: string
 }
+
+type partial = Partial<User>
+type required = Required<User>
+type readonly = Readonly<User>
+type RequiredOrReadonly = Readonly<Required<User>>
