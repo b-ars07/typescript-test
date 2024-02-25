@@ -787,8 +787,8 @@ type UserAccess = {
     adminPanel?: boolean
 }
 
-type ModifiredToAccess<Type> = {
+type ModifiedToAccess<Type> = {
     +readonly [Property in keyof Type as `canAccess${string & Property}`]-?: boolean
 }
 
-type UserAccess2 = ModifiredToAccess<UserRoles>
+type UserAccess2 = ModifiedToAccess<UserRoles>
